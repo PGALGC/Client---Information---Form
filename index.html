@@ -18,12 +18,13 @@
         }
         
         .container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
             background-color: white;
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
         }
         
         h1 {
@@ -32,6 +33,13 @@
             margin-bottom: 30px;
             border-bottom: 2px solid #f0f0f0;
             padding-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        h1:hover {
+            background-color: #f9f9f9;
+            border-radius: 5px;
         }
         
         .form-group {
@@ -90,13 +98,13 @@
         .form-row {
             display: flex;
             flex-wrap: wrap;
-            margin: 0 -10px;
+            margin: 0 -15px;
         }
         
         .form-col {
             flex: 1;
-            padding: 0 10px;
-            min-width: 200px;
+            padding: 0 15px;
+            min-width: 250px;
         }
         
         button {
@@ -154,30 +162,462 @@
             background-color: #c0392b;
         }
         
-        @media (max-width: 600px) {
+        .capture-btn {
+            background-color: #3498db;
+        }
+        
+        .capture-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .capture-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .capture-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 95%;
+            max-height: 95%;
+            overflow: auto;
+            text-align: center;
+        }
+        
+        .capture-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+        
+        .capture-buttons button {
+            width: auto;
+            margin-top: 0;
+        }
+        
+        .cancel-btn {
+            background-color: #95a5a6;
+        }
+        
+        .cancel-btn:hover {
+            background-color: #7f8c8d;
+        }
+        
+        .save-image-btn {
+            background-color: #2ecc71;
+        }
+        
+        .save-image-btn:hover {
+            background-color: #27ae60;
+        }
+        
+        .edit-header-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .edit-header-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+        }
+        
+        .edit-header-content input {
+            width: 100%;
+            padding: 12px;
+            margin: 15px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 18px;
+            text-align: center;
+        }
+        
+        .edit-header-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .edit-header-buttons button {
+            width: auto;
+            margin-top: 0;
+            padding: 10px 20px;
+        }
+        
+        .note {
+            background-color: #fff9e6;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-size: 14px;
+            border-left: 4px solid #f1c40f;
+            text-align: center;
+        }
+        
+        .capture-preview {
+            max-width: 100%;
+            max-height: 80vh;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 10px 0;
+            object-fit: contain;
+        }
+        
+        /* Passport Image Upload Styles */
+        .passport-upload-container {
+            margin: 25px 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            border: 2px dashed #dee2e6;
+            text-align: center;
+        }
+        
+        .passport-upload-label {
+            display: block;
+            margin-bottom: 15px;
+            font-weight: 600;
+            font-size: 18px;
+            color: #495057;
+        }
+        
+        .passport-upload-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: auto;
+            margin: 0;
+        }
+        
+        .passport-upload-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+        
+        .passport-upload-icon {
+            font-size: 24px;
+        }
+        
+        .passport-preview-container {
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .passport-preview {
+            max-width: 100%;
+            max-height: 450px;
+            border: 3px solid #e9ecef;
+            border-radius: 8px;
+            object-fit: contain;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+            display: block;
+            background-color: white;
+        }
+        
+        .passport-remove-btn {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 14px;
+            width: auto;
+        }
+        
+        .passport-remove-btn:hover {
+            background-color: #c0392b;
+        }
+        
+        .file-input {
+            display: none;
+        }
+        
+        .upload-instructions {
+            font-size: 14px;
+            color: #6c757d;
+            margin-top: 10px;
+            line-height: 1.4;
+        }
+        
+        .image-size-info {
+            font-size: 12px;
+            color: #868e96;
+            margin-top: 5px;
+            font-style: italic;
+        }
+        
+        /* Page Styles */
+        .page-container {
+            width: 800px;
+            background: white;
+            margin: 10px auto;
+            padding: 30px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .page-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+        
+        .page-number {
+            position: absolute;
+            bottom: 15px;
+            right: 30px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .multi-page-container {
+            background: white;
+            margin: 20px auto;
+        }
+        
+        .multi-page-preview {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .page-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #333, transparent);
+            margin: 20px 0;
+            width: 100%;
+        }
+        
+        /* Form page specific styles */
+        .form-page-content {
+            width: 100%;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .form-field {
+            margin-bottom: 20px;
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            background-color: #fafafa;
+            border-radius: 4px;
+        }
+        
+        .form-field-label {
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .form-field-value {
+            font-size: 16px;
+            color: #555;
+            padding: 8px 12px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            min-height: 20px;
+            word-wrap: break-word;
+        }
+        
+        /* Passport page specific styles */
+        .passport-page-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 600px;
+            text-align: center;
+        }
+        
+        .passport-image-container {
+            margin: 20px 0;
+            /* A5 size approximation: 148mm x 210mm (5.83" x 8.27") */
+            width: 420px;
+            height: 595px;
+            border: 2px solid #333;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f9f9f9;
+        }
+        
+        .passport-display-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+        
+        /* Auto-save notification */
+        .auto-save-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #2ecc71;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 3000;
+            display: none;
+            font-weight: bold;
+        }
+        
+        .auto-save-notification.show {
+            display: block;
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @media (max-width: 768px) {
             .form-col {
                 flex: 100%;
             }
             
             .container {
                 padding: 15px;
+                max-width: 100%;
             }
             
             .button-group {
                 flex-direction: column;
             }
+            
+            .capture-buttons {
+                flex-direction: column;
+            }
+            
+            .edit-header-buttons {
+                flex-direction: column;
+            }
+            
+            .passport-preview {
+                max-height: 350px;
+            }
+            
+            .passport-upload-btn {
+                padding: 15px 30px;
+                font-size: 16px;
+            }
+            
+            .form-row {
+                margin: 0 -10px;
+            }
+            
+            .form-col {
+                padding: 0 10px;
+                min-width: 200px;
+            }
+            
+            .page-container {
+                width: 100%;
+                padding: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+            
+            .form-row {
+                margin: 0 -5px;
+            }
+            
+            .form-col {
+                padding: 0 5px;
+            }
+            
+            .page-container {
+                padding: 15px;
+            }
+        }
+
+        /* Hide passport preview from form capture */
+        .hide-for-capture {
+            display: none !important;
+        }
+
+        .processing-indicator {
+            display: none;
+            text-align: center;
+            margin: 10px 0;
+            color: #3498db;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>
+    <div class="container" id="formContainer">
+        <h1 id="pageHeader">
             <span class="whatsapp-icon">📱</span>
-            Client Information Form
+            <span id="headerText">Client Information Form</span>
+            <span class="edit-icon" style="font-size: 16px; margin-left: 10px;">✏️</span>
         </h1>
         
         <div class="instructions">
-            <p><strong>Instructions:</strong> Please fill out all required fields. Your data will be automatically saved as you type. Once completed, click the "Submit to WhatsApp" button to send this information to our WhatsApp group.</p>
+            <p><strong>Instructions:</strong> Please fill out all required fields. Your data will be automatically saved as you type. Once completed, click the "Capture Image" button to generate a summary image.</p>
         </div>
         
         <form id="clientForm">
@@ -202,7 +642,6 @@
                 </div>
             </div>
             
-            <!-- Email field added after surname -->
             <div class="form-group">
                 <label for="email">Email <span class="required">*</span></label>
                 <input type="email" id="email" name="email" required>
@@ -249,11 +688,38 @@
                 <input type="date" id="dob" name="dob" required>
             </div>
             
+            <!-- Passport Image Upload Section -->
+            <div class="passport-upload-container" id="passportUploadSection">
+                <label class="passport-upload-label">Passport Image Upload</label>
+                <button type="button" class="passport-upload-btn" id="passportUploadBtn" tabindex="0">
+                    <span class="passport-upload-icon">📷</span>
+                    Upload Passport Image
+                </button>
+                <input type="file" id="passportImage" class="file-input" accept="image/*">
+                <!-- Debug button - remove this after testing -->
+                <button type="button" style="margin: 10px; background: red; color: white; padding: 10px;" onclick="document.getElementById('passportImage').click(); console.log('Debug button clicked');">DEBUG: Direct File Input</button>
+                <div class="upload-instructions">
+                    <p>Upload a high-quality image of your passport<br>The image will be displayed on Page 2 (A5 size)<br><strong>Click "Capture & Save Both Pages" to save the complete document!</strong></p>
+                </div>
+                
+                <div class="passport-preview-container" id="passportPreviewContainer">
+                    <img id="passportPreview" class="passport-preview" alt="Passport preview">
+                    <div id="imageSizeInfo" class="image-size-info"></div>
+                    <button type="button" class="passport-remove-btn" id="removePassportBtn">Remove Image</button>
+                </div>
+            </div>
+            
             <div class="form-row">
                 <div class="form-col">
                     <div class="form-group">
                         <label for="passportNo">Passport No. <span class="required">*</span></label>
                         <input type="text" id="passportNo" name="passportNo" required>
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label for="passportIssue">Passport Issue Date <span class="required">*</span></label>
+                        <input type="date" id="passportIssue" name="passportIssue" required>
                     </div>
                 </div>
                 <div class="form-col">
@@ -277,57 +743,140 @@
             <div class="save-indicator" id="saveIndicator"></div>
             
             <div class="button-group">
-                <button type="button" id="submitBtn">
-                    <span class="whatsapp-icon">💬</span>
-                    Submit to WhatsApp
+                <button type="button" id="captureBtn" class="capture-btn">
+                    <span class="whatsapp-icon">📷</span>
+                    Capture & Save Both Pages
                 </button>
                 <button type="button" id="clearBtn" class="clear-btn">
                     Clear Form
                 </button>
             </div>
+            
+            <div class="note">
+                <strong>Note:</strong> Page 1 (form details) and Page 2 (passport) will be saved as a single combined document showing both pages vertically.
+            </div>
         </form>
     </div>
 
+    <!-- Capture container for multi-page preview -->
+    <div class="capture-container" id="captureContainer">
+        <div class="capture-content">
+            <h2>Processing Your Document</h2>
+            <div class="processing-indicator" id="processingIndicator">
+                <p>Creating your two-page document...</p>
+            </div>
+            <div class="multi-page-container" id="multiPageContainer">
+                <div class="multi-page-preview" id="multiPagePreview">
+                    <!-- Pages will be dynamically added here -->
+                </div>
+            </div>
+            <div class="capture-buttons">
+                <button id="cancelCaptureBtn" class="cancel-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit header modal -->
+    <div class="edit-header-modal" id="editHeaderModal">
+        <div class="edit-header-content">
+            <h3>Edit Form Title</h3>
+            <input type="text" id="headerInput" placeholder="Enter new form title">
+            <div class="edit-header-buttons">
+                <button id="saveHeaderBtn">Save</button>
+                <button id="cancelHeaderBtn" class="cancel-btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Auto-save notification -->
+    <div class="auto-save-notification" id="autoSaveNotification">
+        ✓ Page 2 (Passport) auto-saved!
+    </div>
+
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script>
         // Save form data to localStorage
         function saveFormData() {
-            const formData = {};
-            const formElements = document.getElementById('clientForm').elements;
-            
-            for (let element of formElements) {
-                if (element.type === 'checkbox') {
-                    formData[element.name] = element.checked;
-                } else if (element.type !== 'button') {
-                    formData[element.name] = element.value;
+            try {
+                const formData = {};
+                const formElements = document.getElementById('clientForm').elements;
+                
+                for (let element of formElements) {
+                    if (element.name) { // Only save elements with names
+                        if (element.type === 'checkbox') {
+                            formData[element.name] = element.checked;
+                        } else if (element.type !== 'button' && element.type !== 'file') {
+                            formData[element.name] = element.value;
+                        }
+                    }
                 }
+                
+                // Save passport image data if exists
+                const passportPreview = document.getElementById('passportPreview');
+                if (passportPreview && passportPreview.src && passportPreview.src.startsWith('data:')) {
+                    formData.passportImage = passportPreview.src;
+                }
+                
+                localStorage.setItem('clientFormData', JSON.stringify(formData));
+                
+                // Show save confirmation
+                const indicator = document.getElementById('saveIndicator');
+                if (indicator) {
+                    indicator.textContent = '✓ Data saved automatically';
+                    setTimeout(() => {
+                        indicator.textContent = '';
+                    }, 2000);
+                }
+            } catch (e) {
+                console.error('Error saving form data:', e);
             }
-            
-            localStorage.setItem('clientFormData', JSON.stringify(formData));
-            
-            // Show save confirmation
-            const indicator = document.getElementById('saveIndicator');
-            indicator.textContent = '✓ Data saved automatically';
-            setTimeout(() => {
-                indicator.textContent = '';
-            }, 2000);
         }
         
         // Load form data from localStorage
         function loadFormData() {
             const savedData = localStorage.getItem('clientFormData');
             if (savedData) {
-                const formData = JSON.parse(savedData);
-                const formElements = document.getElementById('clientForm').elements;
-                
-                for (let element of formElements) {
-                    if (formData.hasOwnProperty(element.name)) {
-                        if (element.type === 'checkbox') {
-                            element.checked = formData[element.name];
-                        } else if (element.type !== 'button') {
-                            element.value = formData[element.name];
+                try {
+                    const formData = JSON.parse(savedData);
+                    const formElements = document.getElementById('clientForm').elements;
+                    
+                    for (let element of formElements) {
+                        if (formData.hasOwnProperty(element.name) && element.name) {
+                            if (element.type === 'checkbox') {
+                                element.checked = formData[element.name] || false;
+                            } else if (element.type !== 'button' && element.type !== 'file') {
+                                element.value = formData[element.name] || '';
+                            }
                         }
                     }
+                    
+                    // Load passport image if exists
+                    if (formData.passportImage && formData.passportImage.startsWith('data:')) {
+                        const passportPreview = document.getElementById('passportPreview');
+                        if (passportPreview) {
+                            passportPreview.onload = function() {
+                                updateImageSizeInfo(passportPreview.naturalWidth, passportPreview.naturalHeight);
+                            };
+                            passportPreview.src = formData.passportImage;
+                            const container = document.getElementById('passportPreviewContainer');
+                            if (container) {
+                                container.style.display = 'block';
+                            }
+                        }
+                    }
+                } catch (e) {
+                    console.error('Error loading saved data:', e);
+                    // Clear corrupted data
+                    localStorage.removeItem('clientFormData');
                 }
+            }
+        }
+        
+        // Update image size information
+        function updateImageSizeInfo(width, height) {
+            const sizeInfo = document.getElementById('imageSizeInfo');
+            if (width && height) {
+                sizeInfo.textContent = `Image dimensions: ${width} × ${height} pixels`;
             }
         }
         
@@ -336,6 +885,10 @@
             if (confirm('Are you sure you want to clear all form data? This cannot be undone.')) {
                 localStorage.removeItem('clientFormData');
                 document.getElementById('clientForm').reset();
+                document.getElementById('passportPreviewContainer').style.display = 'none';
+                document.getElementById('passportPreview').src = '';
+                document.getElementById('imageSizeInfo').textContent = '';
+                document.getElementById('passportImage').value = '';
                 document.getElementById('saveIndicator').textContent = 'Form cleared';
                 setTimeout(() => {
                     document.getElementById('saveIndicator').textContent = '';
@@ -348,22 +901,341 @@
             const formElements = document.getElementById('clientForm').elements;
             
             for (let element of formElements) {
-                if (element.type !== 'button') {
+                if (element.type !== 'button' && element.type !== 'file') {
                     element.addEventListener('input', saveFormData);
                     element.addEventListener('change', saveFormData);
+                    element.addEventListener('blur', saveFormData); // Additional save trigger
                 }
             }
             
             document.getElementById('clearBtn').addEventListener('click', clearFormData);
+            
+            // Also save data when user leaves the page
+            window.addEventListener('beforeunload', saveFormData);
+        }
+        
+        // Create form summary page
+        function createFormPage() {
+            console.log('Creating form page...'); // Debug log
+            const pageDiv = document.createElement('div');
+            pageDiv.className = 'page-container';
+            pageDiv.style.marginBottom = '30px';
+            
+            const title = document.createElement('div');
+            title.className = 'page-title';
+            title.textContent = 'Client Information Form';
+            title.style.textAlign = 'center';
+            title.style.marginBottom = '30px';
+            title.style.fontSize = '28px';
+            title.style.fontWeight = 'bold';
+            title.style.color = '#333';
+            
+            const content = document.createElement('div');
+            content.className = 'form-page-content';
+            
+            // Add all form fields - Get values directly from form elements
+            const fields = [
+                { label: 'Name', id: 'name' },
+                { label: 'Middle Name', id: 'middleName' },
+                { label: 'Surname', id: 'surname' },
+                { label: 'Email', id: 'email' },
+                { label: 'Address Line 1', id: 'address1' },
+                { label: 'Street Name', id: 'streetName' },
+                { label: 'Town', id: 'town' },
+                { label: 'County', id: 'county' },
+                { label: 'Post Code', id: 'postCode' },
+                { label: 'Mobile No.', id: 'mobile' },
+                { label: 'Date of Birth', id: 'dob' },
+                { label: 'Passport No.', id: 'passportNo' },
+                { label: 'Passport Issue Date', id: 'passportIssue' },
+                { label: 'Passport Expiry Date', id: 'passportExpiry' },
+                { label: 'Comments', id: 'comments' }
+            ];
+            
+            fields.forEach(field => {
+                const element = document.getElementById(field.id);
+                const value = element ? element.value.trim() : '';
+                
+                console.log(`Field ${field.label}: "${value}"`); // Debug log
+                
+                // Show all fields that have values (don't show empty fields)
+                if (value) {
+                    const fieldDiv = document.createElement('div');
+                    fieldDiv.className = 'form-field';
+                    
+                    const label = document.createElement('div');
+                    label.className = 'form-field-label';
+                    label.textContent = field.label;
+                    
+                    const valueDiv = document.createElement('div');
+                    valueDiv.className = 'form-field-value';
+                    valueDiv.textContent = value;
+                    
+                    fieldDiv.appendChild(label);
+                    fieldDiv.appendChild(valueDiv);
+                    content.appendChild(fieldDiv);
+                }
+            });
+            
+            // Add confirmation checkbox status
+            const confirmationCheckbox = document.getElementById('confirmation');
+            if (confirmationCheckbox && confirmationCheckbox.checked) {
+                const confirmationDiv = document.createElement('div');
+                confirmationDiv.className = 'form-field';
+                
+                const confirmationLabel = document.createElement('div');
+                confirmationLabel.className = 'form-field-label';
+                confirmationLabel.textContent = 'Deposit Confirmation';
+                
+                const confirmationValue = document.createElement('div');
+                confirmationValue.className = 'form-field-value';
+                confirmationValue.textContent = '✓ Accepted - NON-REFUNDABLE or transferable once paid';
+                confirmationValue.style.color = '#27ae60';
+                confirmationValue.style.fontWeight = 'bold';
+                
+                confirmationDiv.appendChild(confirmationLabel);
+                confirmationDiv.appendChild(confirmationValue);
+                content.appendChild(confirmationDiv);
+            }
+            
+            const pageNumber = document.createElement('div');
+            pageNumber.className = 'page-number';
+            pageNumber.textContent = 'Page 1 of 2';
+            pageNumber.style.textAlign = 'center';
+            pageNumber.style.marginTop = '30px';
+            pageNumber.style.fontSize = '14px';
+            pageNumber.style.color = '#666';
+            
+            pageDiv.appendChild(title);
+            pageDiv.appendChild(content);
+            pageDiv.appendChild(pageNumber);
+            
+            console.log('Form page created successfully'); // Debug log
+            return pageDiv;
+        }
+        
+        // Create passport page
+        function createPassportPage() {
+            const pageDiv = document.createElement('div');
+            pageDiv.className = 'page-container';
+            pageDiv.style.marginTop = '50px';
+            
+            const title = document.createElement('div');
+            title.className = 'page-title';
+            title.textContent = 'Passport Image';
+            title.style.textAlign = 'center';
+            title.style.marginBottom = '30px';
+            title.style.fontSize = '28px';
+            title.style.fontWeight = 'bold';
+            title.style.color = '#333';
+            
+            const content = document.createElement('div');
+            content.className = 'passport-page-content';
+            
+            const passportPreview = document.getElementById('passportPreview');
+            const imgContainer = document.createElement('div');
+            imgContainer.className = 'passport-image-container';
+            
+            const img = document.createElement('img');
+            img.className = 'passport-display-image';
+            img.src = passportPreview.src;
+            img.alt = 'Passport Image';
+            
+            imgContainer.appendChild(img);
+            content.appendChild(imgContainer);
+            
+            const pageNumber = document.createElement('div');
+            pageNumber.className = 'page-number';
+            pageNumber.textContent = 'Page 2 of 2';
+            pageNumber.style.textAlign = 'center';
+            pageNumber.style.marginTop = '30px';
+            pageNumber.style.fontSize = '14px';
+            pageNumber.style.color = '#666';
+            
+            pageDiv.appendChild(title);
+            pageDiv.appendChild(content);
+            pageDiv.appendChild(pageNumber);
+            
+            return pageDiv;
+        }
+
+        // Download image with specified filename
+        function downloadImage(imageData, filename) {
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = imageData;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+        
+        // Show auto-save notification
+        function showAutoSaveNotification(message = '✓ Page 2 (Passport) auto-saved!') {
+            const notification = document.getElementById('autoSaveNotification');
+            notification.textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Auto-save passport page when image is uploaded
+        function autoSavePassportPage() {
+            const passportPreview = document.getElementById('passportPreview');
+            if (passportPreview.src && passportPreview.src.startsWith('data:')) {
+                // Create Page 2 (Passport) for auto-save
+                const page2Div = createPassportPage();
+                
+                // Create a temporary container for capturing
+                const tempContainer = document.createElement('div');
+                tempContainer.style.position = 'absolute';
+                tempContainer.style.left = '-9999px';
+                tempContainer.style.top = '-9999px';
+                tempContainer.appendChild(page2Div);
+                document.body.appendChild(tempContainer);
+                
+                // Capture passport page
+                html2canvas(page2Div, {
+                    scale: 1,
+                    useCORS: true,
+                    logging: false,
+                    width: page2Div.scrollWidth,
+                    height: page2Div.scrollHeight,
+                    backgroundColor: '#ffffff'
+                }).then(canvas => {
+                    const imageData = canvas.toDataURL('image/png');
+                    downloadImage(imageData, 'page-2-passport-image.png');
+                    showAutoSaveNotification();
+                    
+                    // Remove temporary container
+                    document.body.removeChild(tempContainer);
+                }).catch(error => {
+                    console.error('Error auto-saving passport page:', error);
+                    document.body.removeChild(tempContainer);
+                });
+            }
         }
         
         // Initialize form when page loads
         document.addEventListener('DOMContentLoaded', function() {
+            // Load saved data first
             loadFormData();
             setupFormListeners();
             
-            // WhatsApp submission
-            document.getElementById('submitBtn').addEventListener('click', function() {
+            // Load saved header text if exists
+            const savedHeader = localStorage.getItem('formHeader');
+            if (savedHeader) {
+                document.getElementById('headerText').textContent = savedHeader;
+            }
+            
+            // Header editing functionality
+            document.getElementById('pageHeader').addEventListener('click', function() {
+                document.getElementById('headerInput').value = document.getElementById('headerText').textContent;
+                document.getElementById('editHeaderModal').style.display = 'flex';
+            });
+            
+            document.getElementById('saveHeaderBtn').addEventListener('click', function() {
+                const newHeader = document.getElementById('headerInput').value.trim();
+                if (newHeader) {
+                    document.getElementById('headerText').textContent = newHeader;
+                    localStorage.setItem('formHeader', newHeader);
+                    document.getElementById('editHeaderModal').style.display = 'none';
+                }
+            });
+            
+            document.getElementById('cancelHeaderBtn').addEventListener('click', function() {
+                document.getElementById('editHeaderModal').style.display = 'none';
+            });
+            
+            // Passport image upload functionality
+            const passportUploadBtn = document.getElementById('passportUploadBtn');
+            const passportImageInput = document.getElementById('passportImage');
+            
+            console.log('Upload button:', passportUploadBtn);
+            console.log('File input:', passportImageInput);
+            
+            if (passportUploadBtn && passportImageInput) {
+                // Multiple event listeners to ensure it works
+                function triggerFileInput(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('Upload button triggered'); // Debug log
+                    try {
+                        passportImageInput.click();
+                    } catch (error) {
+                        console.error('Error clicking file input:', error);
+                        // Fallback: try to trigger programmatically
+                        passportImageInput.style.display = 'block';
+                        passportImageInput.focus();
+                        setTimeout(() => {
+                            passportImageInput.style.display = 'none';
+                        }, 100);
+                    }
+                }
+                
+                passportUploadBtn.addEventListener('click', triggerFileInput);
+                passportUploadBtn.addEventListener('touchstart', triggerFileInput);
+                
+                // Also add keyboard support
+                passportUploadBtn.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        triggerFileInput(e);
+                    }
+                });
+                
+                passportImageInput.addEventListener('change', function(e) {
+                    console.log('File input changed'); // Debug log
+                    const file = e.target.files[0];
+                    if (file) {
+                        console.log('File selected:', file.name); // Debug log
+                        
+                        // Validate file type
+                        if (!file.type.startsWith('image/')) {
+                            alert('Please select a valid image file.');
+                            return;
+                        }
+                        
+                        const reader = new FileReader();
+                        reader.onload = function(readerEvent) {
+                            const passportPreview = document.getElementById('passportPreview');
+                            const previewContainer = document.getElementById('passportPreviewContainer');
+                            
+                            if (passportPreview && previewContainer) {
+                                passportPreview.src = readerEvent.target.result;
+                                previewContainer.style.display = 'block';
+                                
+                        // Get image dimensions after it loads
+                        passportPreview.onload = function() {
+                            updateImageSizeInfo(passportPreview.naturalWidth, passportPreview.naturalHeight);
+                            // Save form data after image is fully loaded
+                            saveFormData();
+                            // Note: Removed auto-save - only save when user clicks main capture button
+                        };
+                            }
+                        };
+                        
+                        reader.onerror = function() {
+                            alert('Error reading file. Please try again.');
+                        };
+                        
+                        reader.readAsDataURL(file);
+                    }
+                });
+            } else {
+                console.error('Passport upload elements not found');
+            }
+            
+            document.getElementById('removePassportBtn').addEventListener('click', function() {
+                document.getElementById('passportPreview').src = '';
+                document.getElementById('passportPreviewContainer').style.display = 'none';
+                document.getElementById('passportImage').value = '';
+                document.getElementById('imageSizeInfo').textContent = '';
+                saveFormData();
+            });
+            
+            // Capture image functionality - SAVES BOTH PAGES AS SINGLE FILE
+            document.getElementById('captureBtn').addEventListener('click', function() {
                 // Basic form validation
                 const requiredFields = document.querySelectorAll('input[required]');
                 let isValid = true;
@@ -400,46 +1272,254 @@
                     return;
                 }
                 
-                // Format the message for WhatsApp
-                const formData = new FormData(document.getElementById('clientForm'));
-                let message = "🌟 *NEW CLIENT INFORMATION* 🌟%0A%0A";
+                // Show processing indicator
+                const multiPagePreview = document.getElementById('multiPagePreview');
+                const processingIndicator = document.getElementById('processingIndicator');
+                multiPagePreview.innerHTML = '';
+                processingIndicator.style.display = 'block';
+                document.getElementById('captureContainer').style.display = 'flex';
                 
-                message += `*Name:* ${formData.get('name')}%0A`;
-                if (formData.get('middleName')) {
-                    message += `*Middle Name:* ${formData.get('middleName')}%0A`;
+                console.log('Starting capture process...'); // Debug log
+                
+                // Create a new properly centered form layout for capture
+                const captureFormContainer = document.createElement('div');
+                captureFormContainer.style.width = '1000px';
+                captureFormContainer.style.backgroundColor = '#ffffff';
+                captureFormContainer.style.padding = '40px';
+                captureFormContainer.style.position = 'absolute';
+                captureFormContainer.style.left = '-9999px';
+                captureFormContainer.style.top = '-9999px';
+                captureFormContainer.style.fontFamily = 'Segoe UI, Tahoma, Geneva, Verdana, sans-serif';
+                
+                // Add title
+                const title = document.createElement('h1');
+                title.textContent = document.getElementById('headerText').textContent;
+                title.style.textAlign = 'center';
+                title.style.color = '#25D366';
+                title.style.marginBottom = '30px';
+                title.style.fontSize = '28px';
+                title.style.fontWeight = 'bold';
+                
+                // Add form fields in a clean layout
+                const formContent = document.createElement('div');
+                formContent.style.maxWidth = '900px';
+                formContent.style.margin = '0 auto';
+                
+                // Get all form values
+                const formData = [
+                    { label: 'Name', value: document.getElementById('name').value, required: true },
+                    { label: 'Middle Name', value: document.getElementById('middleName').value },
+                    { label: 'Surname', value: document.getElementById('surname').value, required: true },
+                    { label: 'Email', value: document.getElementById('email').value, required: true },
+                    { label: 'Address Line 1', value: document.getElementById('address1').value, required: true },
+                    { label: 'Street Name', value: document.getElementById('streetName').value },
+                    { label: 'Town', value: document.getElementById('town').value, required: true },
+                    { label: 'County', value: document.getElementById('county').value },
+                    { label: 'Post Code', value: document.getElementById('postCode').value, required: true },
+                    { label: 'Mobile No.', value: document.getElementById('mobile').value, required: true },
+                    { label: 'Date of Birth', value: document.getElementById('dob').value, required: true },
+                    { label: 'Passport No.', value: document.getElementById('passportNo').value, required: true },
+                    { label: 'Passport Issue Date', value: document.getElementById('passportIssue').value, required: true },
+                    { label: 'Passport Expiry Date', value: document.getElementById('passportExpiry').value, required: true },
+                    { label: 'Comments', value: document.getElementById('comments').value }
+                ];
+                
+                // Create form fields
+                formData.forEach(field => {
+                    if (field.value) {
+                        const fieldDiv = document.createElement('div');
+                        fieldDiv.style.marginBottom = '20px';
+                        fieldDiv.style.display = 'flex';
+                        fieldDiv.style.alignItems = 'center';
+                        
+                        const label = document.createElement('div');
+                        label.style.width = '200px';
+                        label.style.fontWeight = 'bold';
+                        label.style.color = '#333';
+                        label.style.fontSize = '16px';
+                        label.textContent = field.label + ':';
+                        
+                        const value = document.createElement('div');
+                        value.style.flex = '1';
+                        value.style.padding = '12px';
+                        value.style.border = '1px solid #ddd';
+                        value.style.borderRadius = '4px';
+                        value.style.backgroundColor = '#f9f9f9';
+                        value.style.fontSize = '16px';
+                        value.textContent = field.value;
+                        
+                        fieldDiv.appendChild(label);
+                        fieldDiv.appendChild(value);
+                        formContent.appendChild(fieldDiv);
+                    }
+                });
+                
+                // Add confirmation if checked
+                const confirmationCheckbox = document.getElementById('confirmation');
+                if (confirmationCheckbox && confirmationCheckbox.checked) {
+                    const confirmDiv = document.createElement('div');
+                    confirmDiv.style.marginTop = '30px';
+                    confirmDiv.style.padding = '15px';
+                    confirmDiv.style.backgroundColor = '#e8f5e8';
+                    confirmDiv.style.border = '1px solid #4CAF50';
+                    confirmDiv.style.borderRadius = '4px';
+                    confirmDiv.style.textAlign = 'center';
+                    confirmDiv.style.color = '#2e7d32';
+                    confirmDiv.style.fontWeight = 'bold';
+                    confirmDiv.textContent = '✓ Deposit Confirmation Accepted - NON-REFUNDABLE or transferable once paid';
+                    formContent.appendChild(confirmDiv);
                 }
-                message += `*Surname:* ${formData.get('surname')}%0A`;
-                message += `*Email:* ${formData.get('email')}%0A`;
-                message += `*Address Line 1:* ${formData.get('address1')}%0A`;
-                if (formData.get('streetName')) {
-                    message += `*Street Name:* ${formData.get('streetName')}%0A`;
-                }
-                message += `*Town:* ${formData.get('town')}%0A`;
-                if (formData.get('county')) {
-                    message += `*County:* ${formData.get('county')}%0A`;
-                }
-                message += `*Post Code:* ${formData.get('postCode')}%0A`;
-                message += `*Mobile No:* ${formData.get('mobile')}%0A`;
-                message += `*Date of Birth:* ${formData.get('dob')}%0A`;
-                message += `*Passport No:* ${formData.get('passportNo')}%0A`;
-                message += `*Passport Expiry:* ${formData.get('passportExpiry')}%0A`;
-                message += `*Deposit Confirmation:* Accepted%0A`;
                 
-                if (formData.get('comments')) {
-                    message += `%0A*Comments:*%0A${formData.get('comments')}%0A`;
-                }
+                captureFormContainer.appendChild(title);
+                captureFormContainer.appendChild(formContent);
+                document.body.appendChild(captureFormContainer);
                 
-                // Replace with your actual WhatsApp group number
-                const whatsappNumber = "1234567890"; // Example number - replace with actual group number
-                
-                // Create WhatsApp URL
-                const whatsappURL = `https://wa.me/${whatsappNumber}?text=${message}`;
-                
-                // Open WhatsApp in a new tab
-                window.open(whatsappURL, '_blank');
-                
-                // Optionally clear form after successful submission
-                // clearFormData();
+                // Capture the new centered form
+                html2canvas(captureFormContainer, {
+                    scale: 1,
+                    useCORS: true,
+                    logging: false,
+                    backgroundColor: '#ffffff'
+                }).then(page1Canvas => {
+                    
+                    // Remove the temporary form container
+                    document.body.removeChild(captureFormContainer);
+                    console.log('Page 1 captured successfully');
+                    
+                    // Check if passport image exists for Page 2
+                    const passportPreview = document.getElementById('passportPreview');
+                    const hasPassportImage = passportPreview && passportPreview.src && passportPreview.src.startsWith('data:');
+                    
+                    console.log('Has passport image:', hasPassportImage);
+                    
+                    if (hasPassportImage) {
+                        // Create Page 2 container - Match Page 1 exactly
+                        const page2Container = document.createElement('div');
+                        page2Container.style.width = page1Canvas.width + 'px'; // Exact same width as Page 1
+                        page2Container.style.height = '842px'; // A5 height
+                        page2Container.style.backgroundColor = '#ffffff';
+                        page2Container.style.padding = '40px';
+                        page2Container.style.position = 'absolute';
+                        page2Container.style.left = '-9999px';
+                        page2Container.style.top = '-9999px';
+                        page2Container.style.boxSizing = 'border-box';
+                        page2Container.style.display = 'flex';
+                        page2Container.style.flexDirection = 'column';
+                        page2Container.style.justifyContent = 'center';
+                        page2Container.style.alignItems = 'center';
+                        
+                        // Add title
+                        const title = document.createElement('h2');
+                        title.textContent = 'Passport Image';
+                        title.style.textAlign = 'center';
+                        title.style.marginBottom = '30px';
+                        title.style.fontSize = '28px';
+                        title.style.color = '#333';
+                        title.style.fontWeight = 'bold';
+                        
+                        // Add passport image container
+                        const imgContainer = document.createElement('div');
+                        imgContainer.style.textAlign = 'center';
+                        imgContainer.style.flex = '1';
+                        imgContainer.style.display = 'flex';
+                        imgContainer.style.alignItems = 'center';
+                        imgContainer.style.justifyContent = 'center';
+                        imgContainer.style.marginBottom = '30px';
+                        
+                        const img = document.createElement('img');
+                        img.src = passportPreview.src;
+                        // Make passport image wider but slightly smaller than before
+                        img.style.width = '600px'; // Reduced from 700px - still wider than original 500px
+                        img.style.maxHeight = '550px';
+                        img.style.objectFit = 'contain'; // Maintain aspect ratio without cropping
+                        img.style.border = '3px solid #333';
+                        img.style.borderRadius = '8px';
+                        img.style.objectFit = 'contain';
+                        img.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
+                        
+                        // Add page number
+                        const pageNum = document.createElement('div');
+                        pageNum.textContent = 'Page 2 of 2';
+                        pageNum.style.textAlign = 'center';
+                        pageNum.style.fontSize = '14px';
+                        pageNum.style.color = '#666';
+                        pageNum.style.marginTop = '20px';
+                        
+                        imgContainer.appendChild(img);
+                        page2Container.appendChild(title);
+                        page2Container.appendChild(imgContainer);
+                        page2Container.appendChild(pageNum);
+                        document.body.appendChild(page2Container);
+                        
+                        // Capture Page 2
+                        html2canvas(page2Container, {
+                            scale: 1,
+                            useCORS: true,
+                            logging: false,
+                            backgroundColor: '#ffffff'
+                        }).then(page2Canvas => {
+                            console.log('Page 2 captured successfully');
+                            
+                            // Remove temporary container
+                            document.body.removeChild(page2Container);
+                            
+                            // Combine both pages
+                            const combinedCanvas = document.createElement('canvas');
+                            const ctx = combinedCanvas.getContext('2d');
+                            
+                            // Set combined canvas size
+                            combinedCanvas.width = Math.max(page1Canvas.width, page2Canvas.width);
+                            combinedCanvas.height = page1Canvas.height + page2Canvas.height + 50; // 50px gap
+                            
+                            // Fill white background
+                            ctx.fillStyle = '#ffffff';
+                            ctx.fillRect(0, 0, combinedCanvas.width, combinedCanvas.height);
+                            
+                            // Draw Page 1
+                            ctx.drawImage(page1Canvas, 0, 0);
+                            
+                            // Draw Page 2 below Page 1
+                            ctx.drawImage(page2Canvas, 0, page1Canvas.height + 50);
+                            
+                            // Download combined image
+                            const finalImageData = combinedCanvas.toDataURL('image/png');
+                            downloadImage(finalImageData, 'client-information-with-passport.png');
+                            
+                            processingIndicator.innerHTML = '<p>✓ Two-page document saved successfully!</p>';
+                            setTimeout(() => {
+                                document.getElementById('captureContainer').style.display = 'none';
+                                processingIndicator.style.display = 'none';
+                            }, 2000);
+                        }).catch(error => {
+                            console.error('Error capturing Page 2:', error);
+                            document.body.removeChild(page2Container);
+                        });
+                    } else {
+                        // No passport image, just download Page 1
+                        const finalImageData = page1Canvas.toDataURL('image/png');
+                        downloadImage(finalImageData, 'client-information-form.png');
+                        
+                        processingIndicator.innerHTML = '<p>✓ Form saved successfully!</p>';
+                        setTimeout(() => {
+                            document.getElementById('captureContainer').style.display = 'none';
+                            processingIndicator.style.display = 'none';
+                        }, 2000);
+                    }
+                }).catch(error => {
+                    console.error('Error capturing Page 1:', error);
+                    
+                    processingIndicator.innerHTML = '<p style="color: red;">✗ Error capturing document. Please try again.</p>';
+                    setTimeout(() => {
+                        document.getElementById('captureContainer').style.display = 'none';
+                        processingIndicator.style.display = 'none';
+                    }, 3000);
+                });
+            });
+            
+            // Cancel capture
+            document.getElementById('cancelCaptureBtn').addEventListener('click', function() {
+                document.getElementById('captureContainer').style.display = 'none';
+                document.getElementById('processingIndicator').style.display = 'none';
             });
         });
     </script>
