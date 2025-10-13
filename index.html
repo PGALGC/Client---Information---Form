@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Information Form</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #25D366;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 15px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"],
+        input[type="date"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+        
+        input:focus,
+        textarea:focus {
+            border-color: #25D366;
+            outline: none;
+            box-shadow: 0 0 5px rgba(37, 211, 102, 0.3);
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            margin-top: 25px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        
+        .checkbox-group input {
+            margin-right: 10px;
+            margin-top: 3px;
+        }
+        
+        .checkbox-group label {
+            font-weight: normal;
+            margin-bottom: 0;
+        }
+        
+        .required {
+            color: #e74c3c;
+        }
+        
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -10px;
+        }
+        
+        .form-col {
+            flex: 1;
+            padding: 0 10px;
+            min-width: 200px;
+        }
+        
+        button {
+            background-color: #25D366;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+        
+        button:hover {
+            background-color: #128C7E;
+        }
+        
+        .whatsapp-icon {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 10px;
+            font-size: 24px;
+        }
+        
+        .instructions {
+            background-color: #e1f7e9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 25px;
+            font-size: 14px;
+            border-left: 4px solid #25D366;
+        }
+        
+        .save-indicator {
+            text-align: center;
+            font-size: 14px;
+            color: #25D366;
+            margin-top: 10px;
+            height: 20px;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .clear-btn {
+            background-color: #e74c3c;
+        }
+        
+        .clear-btn:hover {
+            background-color: #c0392b;
+        }
+        
+        @media (max-width: 600px) {
+            .form-col {
+                flex: 100%;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>
+            <span class="whatsapp-icon">📱</span>
+            Client Information Form
+        </h1>
+        
+        <div class="instructions">
+            <p><strong>Instructions:</strong> Please fill out all required fields. Your data will be automatically saved as you type. Once completed, click the "Submit to WhatsApp" button to send this information to our WhatsApp group.</p>
+        </div>
+        
+        <form id="clientForm">
+            <div class="form-row">
+                <div class="form-col">
+                    <div class="form-group">
+                        <label for="name">Name <span class="required">*</span></label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label for="middleName">Middle Name</label>
+                        <input type="text" id="middleName" name="middleName">
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label for="surname">Surname <span class="required">*</span></label>
+                        <input type="text" id="surname" name="surname" required>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Email field added after surname -->
+            <div class="form-group">
+                <label for="email">Email <span class="required">*</span></label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="address1">Address Line 1 <span class="required">*</span></label>
+                <input type="text" id="address1" name="address1" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="streetName">Street Name</label>
+                <input type="text" id="streetName" name="streetName">
+            </div>
+            
+            <div class="form-row">
+                <div class="form-col">
+                    <div class="form-group">
+                        <label for="town">Town <span class="required">*</span></label>
+                        <input type="text" id="town" name="town" required>
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label for="county">County</label>
+                        <input type="text" id="county" name="county">
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label for="postCode">Post Code <span class="required">*</span></label>
+                        <input type="text" id="postCode" name="postCode" required>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="mobile">Mobile No. <span class="required">*</span></label>
+                <input type="tel" id="mobile" name="mobile" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="dob">Date of Birth <span class="required">*</span></label>
+                <input type="date" id="dob" name="dob" required>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-col">
+                    <div class="form-group">
+                        <label for="passportNo">Passport No. <span class="required">*</span></label>
+                        <input type="text" id="passportNo" name="passportNo" required>
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label for="passportExpiry">Passport Expiry Date <span class="required">*</span></label>
+                        <input type="date" id="passportExpiry" name="passportExpiry" required>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="checkbox-group">
+                <input type="checkbox" id="confirmation" name="confirmation" required>
+                <label for="confirmation">I confirm that the deposit is NON-REFUNDABLE or transferable once paid. I accept these conditions. <span class="required">*</span></label>
+            </div>
+            
+            <div class="form-group">
+                <label for="comments">Comments</label>
+                <textarea id="comments" name="comments" rows="4" placeholder="Add any additional comments here..."></textarea>
+            </div>
+            
+            <div class="save-indicator" id="saveIndicator"></div>
+            
+            <div class="button-group">
+                <button type="button" id="submitBtn">
+                    <span class="whatsapp-icon">💬</span>
+                    Submit to WhatsApp
+                </button>
+                <button type="button" id="clearBtn" class="clear-btn">
+                    Clear Form
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Save form data to localStorage
+        function saveFormData() {
+            const formData = {};
+            const formElements = document.getElementById('clientForm').elements;
+            
+            for (let element of formElements) {
+                if (element.type === 'checkbox') {
+                    formData[element.name] = element.checked;
+                } else if (element.type !== 'button') {
+                    formData[element.name] = element.value;
+                }
+            }
+            
+            localStorage.setItem('clientFormData', JSON.stringify(formData));
+            
+            // Show save confirmation
+            const indicator = document.getElementById('saveIndicator');
+            indicator.textContent = '✓ Data saved automatically';
+            setTimeout(() => {
+                indicator.textContent = '';
+            }, 2000);
+        }
+        
+        // Load form data from localStorage
+        function loadFormData() {
+            const savedData = localStorage.getItem('clientFormData');
+            if (savedData) {
+                const formData = JSON.parse(savedData);
+                const formElements = document.getElementById('clientForm').elements;
+                
+                for (let element of formElements) {
+                    if (formData.hasOwnProperty(element.name)) {
+                        if (element.type === 'checkbox') {
+                            element.checked = formData[element.name];
+                        } else if (element.type !== 'button') {
+                            element.value = formData[element.name];
+                        }
+                    }
+                }
+            }
+        }
+        
+        // Clear form data from localStorage and form
+        function clearFormData() {
+            if (confirm('Are you sure you want to clear all form data? This cannot be undone.')) {
+                localStorage.removeItem('clientFormData');
+                document.getElementById('clientForm').reset();
+                document.getElementById('saveIndicator').textContent = 'Form cleared';
+                setTimeout(() => {
+                    document.getElementById('saveIndicator').textContent = '';
+                }, 2000);
+            }
+        }
+        
+        // Set up event listeners for form inputs
+        function setupFormListeners() {
+            const formElements = document.getElementById('clientForm').elements;
+            
+            for (let element of formElements) {
+                if (element.type !== 'button') {
+                    element.addEventListener('input', saveFormData);
+                    element.addEventListener('change', saveFormData);
+                }
+            }
+            
+            document.getElementById('clearBtn').addEventListener('click', clearFormData);
+        }
+        
+        // Initialize form when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadFormData();
+            setupFormListeners();
+            
+            // WhatsApp submission
+            document.getElementById('submitBtn').addEventListener('click', function() {
+                // Basic form validation
+                const requiredFields = document.querySelectorAll('input[required]');
+                let isValid = true;
+                
+                requiredFields.forEach(field => {
+                    if (!field.value.trim()) {
+                        isValid = false;
+                        field.style.borderColor = '#e74c3c';
+                    } else {
+                        field.style.borderColor = '#ddd';
+                    }
+                });
+                
+                // Email validation
+                const emailField = document.getElementById('email');
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(emailField.value.trim())) {
+                    isValid = false;
+                    emailField.style.borderColor = '#e74c3c';
+                } else {
+                    emailField.style.borderColor = '#ddd';
+                }
+                
+                const confirmationCheckbox = document.getElementById('confirmation');
+                if (!confirmationCheckbox.checked) {
+                    isValid = false;
+                    confirmationCheckbox.parentElement.style.backgroundColor = '#ffe6e6';
+                } else {
+                    confirmationCheckbox.parentElement.style.backgroundColor = '#f9f9f9';
+                }
+                
+                if (!isValid) {
+                    alert('Please fill in all required fields correctly and accept the conditions.');
+                    return;
+                }
+                
+                // Format the message for WhatsApp
+                const formData = new FormData(document.getElementById('clientForm'));
+                let message = "🌟 *NEW CLIENT INFORMATION* 🌟%0A%0A";
+                
+                message += `*Name:* ${formData.get('name')}%0A`;
+                if (formData.get('middleName')) {
+                    message += `*Middle Name:* ${formData.get('middleName')}%0A`;
+                }
+                message += `*Surname:* ${formData.get('surname')}%0A`;
+                message += `*Email:* ${formData.get('email')}%0A`;
+                message += `*Address Line 1:* ${formData.get('address1')}%0A`;
+                if (formData.get('streetName')) {
+                    message += `*Street Name:* ${formData.get('streetName')}%0A`;
+                }
+                message += `*Town:* ${formData.get('town')}%0A`;
+                if (formData.get('county')) {
+                    message += `*County:* ${formData.get('county')}%0A`;
+                }
+                message += `*Post Code:* ${formData.get('postCode')}%0A`;
+                message += `*Mobile No:* ${formData.get('mobile')}%0A`;
+                message += `*Date of Birth:* ${formData.get('dob')}%0A`;
+                message += `*Passport No:* ${formData.get('passportNo')}%0A`;
+                message += `*Passport Expiry:* ${formData.get('passportExpiry')}%0A`;
+                message += `*Deposit Confirmation:* Accepted%0A`;
+                
+                if (formData.get('comments')) {
+                    message += `%0A*Comments:*%0A${formData.get('comments')}%0A`;
+                }
+                
+                // Replace with your actual WhatsApp group number
+                const whatsappNumber = "1234567890"; // Example number - replace with actual group number
+                
+                // Create WhatsApp URL
+                const whatsappURL = `https://wa.me/${whatsappNumber}?text=${message}`;
+                
+                // Open WhatsApp in a new tab
+                window.open(whatsappURL, '_blank');
+                
+                // Optionally clear form after successful submission
+                // clearFormData();
+            });
+        });
+    </script>
+</body>
+</html>
