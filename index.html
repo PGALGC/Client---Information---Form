@@ -600,7 +600,7 @@
                     logging: false,
                     height: formContainer.scrollHeight,
                     width: formContainer.scrollWidth
-                }).then(canvas => {
+                }).then(formCanvas => {
                     // Restore original styles
                     formContainer.style.maxWidth = originalMaxWidth;
                     formContainer.style.margin = originalMargin;
@@ -618,10 +618,10 @@
                                        document.getElementById('previewContainer').style.display !== 'none';
                     
                     if (hasPassport) {
-                        createPassportPage(canvas);
+                        createPassportPage(formCanvas);
                     } else {
                         // Just the form
-                        displayAndDownload(canvas, 'client-information-form.png');
+                        displayAndDownload(formCanvas, 'client-information-form.png');
                     }
                 }).catch(error => {
                     console.error('Error capturing form:', error);
@@ -644,18 +644,22 @@
         }
         
         function createPassportPage(formCanvas) {
-            const passportContainer = document.createElement('div');
-            passportContainer.style.width = '800px';
-            passportContainer.style.height = '600px';
-            passportContainer.style.backgroundColor = 'white';
-            passportContainer.style.padding = '40px';
-            passportContainer.style.display = 'flex';
-            passportContainer.style.flexDirection = 'column';
-            passportContainer.style.alignItems = 'center';
-            passportContainer.style.justifyContent = 'center';
-            passportContainer.style.position = 'absolute';
-            passportContainer.style.left = '-9999px';
-            passportContainer.style.top = '0';
+            const passportImg = document.getElementById('previewImg');
+            
+            // Create a dedicated passport page with the original high-resolution image
+            const passportPage = document.createElement('div');
+            passportPage.style.width = '210mm'; // A4 width
+            passportPage.style.minHeight = '297mm'; // A4 height
+            passportPage.style.backgroundColor = 'white';
+            passportPage.style.padding = '20mm';
+            passportPage.style.display = 'flex';
+            passportPage.style.flexDirection = 'column';
+            passportPage.style.alignItems = 'center';
+            passportPage.style.justifyContent = 'center';
+            passportPage.style.position = 'absolute';
+            passportPage.style.left = '-9999px';
+            passportPage.style.top = '0';
+            passportPage.style.boxSizing = 'border-box';
             
             const title = document.createElement('h2');
             title.textContent = 'Passport Image';
@@ -663,43 +667,64 @@
             title.style.marginBottom = '30px';
             title.style.fontSize = '28px';
             title.style.color = '#333';
+            title.style.width = '100%';
+            
+            const imgContainer = document.createElement('div');
+            imgContainer.style.width = '100%';
+            imgContainer.style.height = '200mm';
+            imgContainer.style.display = 'flex';
+            imgContainer.style.alignItems = 'center';
+            imgContainer.style.justifyContent = 'center';
+            imgContainer.style.border = '1px solid #ddd';
+            imgContainer.style.backgroundColor = '#f9f9f9';
             
             const img = document.createElement('img');
-            img.src = document.getElementById('previewImg').src;
-            img.style.maxWidth = '600px';
-            img.style.maxHeight = '400px';
+            img.src = passportImg.src;
+            img.style.maxWidth = '100%';
+            img.style.maxHeight = '100%';
             img.style.objectFit = 'contain';
-            img.style.border = '2px solid #333';
-            img.style.borderRadius = '8px';
+            img.style.display = 'block';
             
-            passportContainer.appendChild(title);
-            passportContainer.appendChild(img);
-            document.body.appendChild(passportContainer);
+            imgContainer.appendChild(img);
+            passportPage.appendChild(title);
+            passportPage.appendChild(imgContainer);
+            document.body.appendChild(passportPage);
             
-            html2canvas(passportContainer, {
-                scale: 1,
+            // Capture the passport page with high resolution
+            html2canvas(passportPage, {
+                scale: 2, // Higher scale for better quality
                 useCORS: true,
-                backgroundColor: '#ffffff'
+                backgroundColor: '#ffffff',
+                allowTaint: false,
+                logging: false,
+                width: passportPage.scrollWidth,
+                height: passportPage.scrollHeight
             }).then(passportCanvas => {
-                document.body.removeChild(passportContainer);
+                document.body.removeChild(passportPage);
                 
-                // Combine both canvases
+                // Combine both canvases (form + passport)
                 const combinedCanvas = document.createElement('canvas');
                 const ctx = combinedCanvas.getContext('2d');
                 
+                // Set dimensions to accommodate both pages
                 combinedCanvas.width = Math.max(formCanvas.width, passportCanvas.width);
-                combinedCanvas.height = formCanvas.height + passportCanvas.height + 50;
+                combinedCanvas.height = formCanvas.height + passportCanvas.height + 20; // Small gap between pages
                 
+                // Fill with white background
                 ctx.fillStyle = '#ffffff';
                 ctx.fillRect(0, 0, combinedCanvas.width, combinedCanvas.height);
                 
+                // Draw form canvas
                 ctx.drawImage(formCanvas, 0, 0);
-                ctx.drawImage(passportCanvas, 0, formCanvas.height + 50);
+                
+                // Draw passport canvas below form
+                ctx.drawImage(passportCanvas, 0, formCanvas.height + 20);
                 
                 displayAndDownload(combinedCanvas, 'client-information-with-passport.png');
             }).catch(error => {
                 console.error('Error capturing passport:', error);
-                document.body.removeChild(passportContainer);
+                document.body.removeChild(passportPage);
+                // Fallback: just show the form if passport capture fails
                 displayAndDownload(formCanvas, 'client-information-form.png');
             });
         }
